@@ -4,8 +4,9 @@ import './App.css';
 import './index.css';
 import Search from './components/search';
 import MovieCard from './components/MovieCard';
+import TrendingMC from './components/TrendingMC'
 import { trendingmovie,updateSearchCount } from './appwrite';
-
+import Orb from './components/Orb'
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -53,20 +54,23 @@ function PosterFan() {
 
 function PexelsLoader() {
   return (
-    <div className="absolute bottom left-0 w-full z-50 pointer-events-none">
+    <div className="relative w-full h-6 py-20 overflow-hidden">
       {Array.from({ length: 4 }).map((_, i) => (
         <span
           key={i}
-          className="absolute top-0 w-3 h-3 bg-white rounded-full"
+          className="absolute top-1/2 w-3 h-3 bg-white rounded-full"
           style={{
+            left: 0,
+            transform: "translateY(-50%)",
             animation: "slide-across 1.8s ease-in-out infinite",
-            animationDelay: `${i * 0.25}s`,
+            animationDelay: `${i * 0.3}s`,
           }}
         ></span>
       ))}
     </div>
   );
 }
+
 
 
 
@@ -144,17 +148,23 @@ function App() {
 
   {/* HERO SECTION */}
   <section
-    className="w-full h-screen bg-cover bg-center flex flex-col items-center justify-center text-white text-center px-4 rounded-b-4xl"
-
-    style={{ backgroundImage: "url('./space.jpeg')" }}
+    className="w-full h-screen bg-cover bg-center flex flex-col items-center justify-center text-white text-center px-4 rounded-b-4xl relative overflow-hidden"
   >
-    <div className="z-10">
+    <video
+      src="./fire.mp4"
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="absolute top-0 left-0 w-full h-full object-cover z-0"
+      style={{ minHeight: '100%', minWidth: '100%' }}
+    />
+    <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
       <PosterFan />
-
       <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
         FIND ALL THE BEST
-        <span className="text-gradient2"> songs </span> + 
-        <span className="text-gradient1"> movies</span> of ALL TIME
+
+        <span className="text-gradient1 hover:from-[#FF6170] hover:to-[#B50E1B]"> movies</span> of ALL TIME
       </h1>
 
       <div className="max-w-lg mx-auto w-full">
@@ -162,25 +172,33 @@ function App() {
       </div>
     </div>
   </section>
-  <div className = "px-10">
-    <section className = "trending">
-      <h1 className = "text-2xl relative left-5">
-        trending
-      </h1>
-      <ul className="trending">
+  <div className="retro-bg px-10" style={{position: 'relative', width: '100%'}}>
+  
+  <section className = "trending">
+    <h1 className = "text-2xl relative left-5 pt-20">
+      CHART BUSTERS
+    </h1>
+    <div className="relative">
+      <ul className="trending scroll-container">
         {trending.map((movie, index) => (
           <li key={movie.$id}>
             <p>{index+1}</p>
-              <img src = {movie.poster_url} alt={movie.title}/>
+            <img src = {movie.poster_url} alt={movie.title}/>
           </li>
         ))}
       </ul>
-    </section>
+      {/* Scroll indicator */}
+      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 rounded-full p-2 cursor-grab hover:bg-white/30 transition-all duration-300">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </div>
+    </div>
+  </section>
 
 
-  {/* MOVIE LIST SECTION (dark like Pexels image grid) */}
+    {/* MOVIE LIST SECTION (dark like Pexels image grid) */}
     <h2 className="text-lg font-mono font-bold text-left mb-6">ALL MOVIES</h2>
-
     {loading ? (
       <PexelsLoader/>
     ) : errorMessage ? (
@@ -192,7 +210,7 @@ function App() {
         ))}
       </ul>
     )}
-    </div>
+  </div>
 </main>
 );
 
