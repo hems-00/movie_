@@ -4,9 +4,8 @@ import './App.css';
 import './index.css';
 import Search from './components/search';
 import MovieCard from './components/MovieCard';
-import TrendingMC from './components/TrendingMC'
 import { trendingmovie,updateSearchCount } from './appwrite';
-import Orb from './components/Orb'
+
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
