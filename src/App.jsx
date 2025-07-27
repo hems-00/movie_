@@ -99,7 +99,7 @@ function App() {
       }
 
       const data = await response.json();
-      // console.log(data);
+    
 
       if (data.Response ==='False'){
         setErrorMessage(data.Error || 'Failed to fetch movies');
@@ -133,7 +133,7 @@ function App() {
     }
   }
 
-  console.log(trending);
+  
   useEffect(()=>{
     fetchMovies(debouncesearchterm);
   },[debouncesearchterm]);
