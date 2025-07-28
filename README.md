@@ -1,5 +1,6 @@
 
 # climaX: The Modern Movie Search Engine
+#### Check out the live site  [🚀](https://movie-nine-livid.vercel.app/)
 
 **climaX** is a modern, interactive web application built with **ReactJS** that functions as a powerful movie search engine. It utilizes data from the TMDB (The Movie Database) API and features a live "Trending" section, which tracks and displays the most-searched movies in real time using Appwrite's online cloud database. Users can search for specific movies, discovering details such as rating, year of release, and language—all in a sleek, contemporary interface.
 
